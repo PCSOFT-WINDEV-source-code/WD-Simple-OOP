@@ -1,0 +1,162 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cSavanna
+ major_version : 28
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x12d4ecc70107ed35
+ internal_properties : CAAAAAgAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  internal_properties : CAAAAAgAAABPhFrZsmzS+gbb1r0fqO+iQhZlpKzm+VD1GE43qftgPNxWzWSnpeIW/lGYAYyhZpdEbaUjZ6yXulkuBn74eBy2GZ9tZWkgZqc=
+  type_code : 10
+  p_codes :
+   -
+     code : |1+
+      cSavanna is Class
+      	
+      PROTECTED
+      	m_sNameImageControlForDrawing is string // Name of the Image control used for the drawing
+      	m_arrTheAnimals is array of cAnimal dynamic // List of savanna animals
+      END
+     type : 131072
+  procedures :
+   -
+     name : Manufacturer
+     procedure_id : 1356969727205371189
+     type_code : 27
+     code : |1-
+      Procedure Constructor(sNameImageControlForDrawing is string)
+      
+      // Stores the name of the control
+      m_sNameImageControlForDrawing = sNameImageControlForDrawing
+     type : 589824
+   -
+     name : Destructor
+     procedure_id : 1356969727205436725
+     type_code : 28
+     code : |1+
+      Procedure Destructor()
+      
+     type : 655360
+   -
+     name : AddAnimal
+     internal_properties : CAAAAAgAAAC9oPkPH16rnSfIjz8O6w/x46fdWAPtdZ5GqfCAN8PlEeI9BwevakNgQkz4iaS1+lsQpwRrtTHrppDgsXSWpzBI0WNzvA/m0SKzx1lRN7WI0wRZXhdGrLmIKZt0FWJ51669ZviLul+9jwss2ZHyQ4yKGpct2Yt3C4G7YjI19k1LpmB8No7iVrg0asFfeA==
+     procedure_id : 1356969727205502261
+     type_code : 12
+     code : |1-
+      // Summary: Adds an animal into the savanna
+      // Syntax:
+      //[ <Result> = ] AddAnimal (<pclAnAnimal> is cAnimal dynamic)
+      //
+      // Parameters:
+      //	pclAnAnimal (dynamic cAnimal): cAnimal object to add
+      // Return value:
+      // 	boolean: True if the animal is added, False otherwise
+      //// Automatic process of errors: RETURN FALSE
+      //
+      
+      Procedure AddAnimal(pclAnAnimal is cAnimal dynamic)
+      
+      // No more than 5 animals
+      IF m_arrTheAnimals..Count = 5 THEN
+      	Error(<§$0000§>)
+      	RESULT False
+      END
+      
+      // Adds the animal to the list
+      Add(m_arrTheAnimals, pclAnAnimal)
+      
+      // Draws the savanna
+      DrawSavanna()
+      
+      RESULT True
+     type : 458752
+   -
+     name : DrawSavanna
+     procedure_id : 1356969727205567797
+     type_code : 12
+     code : |1-
+      // Summary: Draws the savanna and the animals
+      // Syntax:
+      //DrawSavanna ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      Procedure DrawSavanna()
+      
+      nXPos, nYPos are int
+      SavannaImage is a Image
+      
+      
+      // Dimensions of the image
+      SavannaImage..Width = {m_sNameImageControlForDrawing}..Width
+      SavannaImage..Height = {m_sNameImageControlForDrawing}..Height
+      
+      // Background image
+      SavannaImage = dLoadImage(".\images\Landscape.jpg")
+      
+      // Start drawing
+      dEndDrawing(SavannaImage)
+      dStartDrawing(SavannaImage, dErase)
+      
+      // Initial position
+      nXPos = {m_sNameImageControlForDrawing}..Width /7
+      nYPos = {m_sNameImageControlForDrawing}..Height /2
+      // Displays the animals
+      FOR ALL ELEMENT pclAnAnimal of m_arrTheAnimals
+      	
+      	// Draws the animal
+      	pclAnAnimal:DrawAnimal(SavannaImage, nXPos, nYPos)
+      	
+      	// Increments the next position
+      	nXPos += pclAnAnimal.AnimalImage.largeur + 10 
+      	
+      END
+      
+      // Displays the image of the savanna in the Image control
+      {m_sNameImageControlForDrawing} = SavannaImage
+     type : 458752
+   -
+     name : Empty
+     procedure_id : 1356969727205633333
+     type_code : 12
+     code : |1+
+      // Summary: Deletes all the animals
+      // Syntax:
+      //Empty ()
+      //
+      // Parameters:
+      //	None
+      // Return value:
+      // 	None
+      //
+      Procedure Empty()
+      
+      // Deletes all the animals
+      DeleteAll(m_arrTheAnimals)
+      
+      // Draws the savanna
+      DrawSavanna()
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+resources :
+ string_res :
+  identifier : 0x1225fd5e00157622
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+  strings :
+   -
+     text :
+      en-GB : No more than 5 animals!
+     index : 0
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

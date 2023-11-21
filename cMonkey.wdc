@@ -1,0 +1,113 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cMonkey
+ major_version : 28
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x12d4ecc80111eecb
+ internal_properties : CAAAAAgAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  internal_properties : CAAAAAgAAAB866eP4Ets4TTLMsshqEz3fUrTsqRNJyKDnG3Fh2I4G2j/gv1+ctrBQKEsIohDsPZ15m8aTDv/o82gJIt8op0fGoBvBA==
+  type_code : 10
+  p_codes :
+   -
+     code : |1+
+      cMonkey is Class
+      	
+      	// A monkey is an animal
+      	inhérits of cAnimal
+      	
+      PROTECTED
+      	// Members specific to the cMonkey class
+      	m_sColor is int
+      	
+      END
+     type : 131072
+  procedures :
+   -
+     name : Manufacturer
+     procedure_id : 1356969731501059787
+     type_code : 27
+     code : |1+
+      Procedure Constructor(sName is string, sColor is string)
+      
+      // Calls the constructor of the "parent" class (cAnimal)
+      Constructor cAnimal(sName)
+      
+      // Stores the color of the monkey
+      m_sColor = sColor
+      
+      // Specific image
+      AnimalImage = dLoadImage(".\images\Monkey.png")
+      
+     type : 589824
+   -
+     name : Destructor
+     procedure_id : 1356969731501125323
+     type_code : 28
+     code : |1+
+      Procedure Destructor()
+      
+     type : 655360
+   -
+     name : DrawAnimal
+     internal_properties : CAAAAAgAAACKnFo3VU60foTLgGJeeEK/ngDHZG1LRUqnKNpJ7WEEUO7Va2IcN6sRXc2TupvCMCrHpJKl2W7V3RCAJ7AXjAzmNSkvJeI7tI/L/okpUcS8vh7WlWcsO6kFPP3C3zzHrMY1QRld78g9OSph5urrCalpU/SRLukKpPYYwapHRK2Klhz9HNYoKxLAvg+fJ/8crFSqk0IbKw==
+     procedure_id : 1356969731501190859
+     type_code : 12
+     code : |1-
+      // Summary: Draws the animal
+      // Syntax:
+      //DrawAnimal (<pSavannaImage> is Image, <nPosX> is int, <nPosY> is int)
+      //
+      // Parameters:
+      //	pSavannaImage (Image): Image
+      //	nPosX (integer): Horizontal position
+      //	nPosY (integer): Vertical position
+      // Return value:
+      // 	None
+      //
+      Procedure VIRTUAL DrawAnimal(pSavannaImage is a Image, LOCAL nXPos is int, LOCAL nYPos is int)
+      
+      // The monkey is positioned higher
+      nYPos -= 80
+      
+      // Copies the image of the animal into the image of the savanna
+      dCopy(AnimalImage, pSavannaImage, 0, 0, AnimalImage.Width, AnimalImage.Height, nXPos, nYPos, AnimalImage.Width, AnimalImage.Height)
+      
+      // Displays the name of the animal in a specific color (brown)
+      dFont("Arial", 10, iBold)
+      dText(nXPos+5, nYPos+AnimalImage.height+5, AnimalName, RGB(208,183,127))
+     type : 458752
+  properties :
+   -
+     name : Color
+     identifier : 0x12d4ecc80112eecb
+     type_code : 103
+     p_codes :
+      -
+        code : |1-
+         Procedure Color()
+         
+         RESULT m_sColor
+        type : 1966080
+      -
+        code : |1-
+         Procedure Color(Value)
+         
+         m_sColor=Value
+        type : 2031616
+     template_refs : []
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+resources :
+ string_res :
+  identifier : 0x1225fd8b002a24c7
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

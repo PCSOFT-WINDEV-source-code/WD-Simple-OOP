@@ -1,0 +1,110 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : cRhinoceros
+ major_version : 28
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x1225fd920034433f
+ internal_properties : CAAAAAgAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  internal_properties : CAAAAAgAAAB866eP4Ets4TTLMsshqEz3fUrTsqRNJyKDnG3Fh2I4G2j/gv1+ctrBQKEsIohDsPZ15m8aTDv/o82gJIt8op0fGoBvBA==
+  type_code : 10
+  p_codes :
+   -
+     code : |1+
+      cRhinoceros is Class
+      	
+      	// A rhinoceros is an animal
+      	inhérits of cAnimal
+      	
+      PROTECTED
+      	// Members specific to the rhinoceros class
+      	m_nHornLength is int
+      	
+      END
+     type : 131072
+  procedures :
+   -
+     name : Manufacturer
+     procedure_id : 1307730070331540287
+     type_code : 27
+     code : |1+
+      Procedure Constructor(sName is string, nHornLength is int)
+      
+      // Calls the constructor of the "parent" class (cAnimal)
+      Constructor cAnimal(sName)
+      
+      // Stores the length of the horn
+      m_nHornLength = nHornLength
+      
+      // Specific image
+      AnimalImage = dLoadImage(".\images\rhino.png")
+      
+     type : 589824
+   -
+     name : Destructor
+     procedure_id : 1307730070331605823
+     type_code : 28
+     code : |1+
+      Procedure Destructor()
+      
+     type : 655360
+   -
+     name : DrawAnimal
+     internal_properties : CAAAAAgAAABeb3vxDMx1vjEaHS4wkDcEe2bPDOE4nHZrJnNUXefkaviysv7FINfhFidAF/Q3Xe9tKg62FIoZUNR1fMicygjsWw5XYY4o9nItgnovP1BlM1bUsK+Ahj0u6QB4ocamWhc7FlwjI1UBzsOwjuIhTgHsEz0srGWPYp0HbghnQFD4KP0lxqOnYZsigMOYGtRATrk0if6SQueCJtpvtwxZ1Zs7fvrTpA==
+     procedure_id : 1307989915851334434
+     type_code : 12
+     code : |1-
+      // Summary: Draws the animal
+      // Syntax:
+      //DrawAnimal (<pSavannaImage> is Image, <nPosX> is int, <nPosY> is int)
+      //
+      // Parameters:
+      //	pSavannaImage (Image): Image
+      //	nPosX (integer): Horizontal position
+      //	nPosY (integer): Vertical position
+      // Return value:
+      // 	None
+      //
+      Procedure VIRTUAL DrawAnimal(pSavannaImage is a Image, LOCAL nXPos is int, LOCAL nYPos is int)
+      
+      // Copies the image of the animal into the image of the savanna
+      dCopy(AnimalImage, pSavannaImage, 0, 0, AnimalImage.Width, AnimalImage.Height, nXPos, nYPos, AnimalImage.Width, AnimalImage.Height)
+      
+      // Displays the name of the animal in a specific color (grey)
+      dFont("Arial", 10, iBold)
+      dText(nXPos+5, nYPos+AnimalImage.height+5, AnimalName, RGB(179,192,182))
+     type : 458752
+  properties :
+   -
+     name : HornLength
+     identifier : 0x1226e03d0010e7ee
+     type_code : 103
+     p_codes :
+      -
+        code : |1-
+         Procedure HornLength()
+         
+         RESULT m_nHornLength
+        type : 1966080
+      -
+        code : |1-
+         Procedure HornLength(Value)
+         
+         m_nHornLength=Value
+        type : 2031616
+     template_refs : []
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+resources :
+ string_res :
+  identifier : 0x1225fd8f003136c1
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ
